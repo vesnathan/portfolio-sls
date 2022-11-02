@@ -84,7 +84,7 @@ functions:
     handler: handler.contact
     events:
       - http:
-        path: contact
+        path: contact/details
         method: get
         
 
