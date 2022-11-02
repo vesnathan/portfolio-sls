@@ -1,0 +1,46 @@
+.leftBarWrapper {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.leftBarWrapper .contentSection {
+  padding: 5px;
+  margin-top: 50px;
+}
+.leftBarWrapper .sectionHeaderWrapper {
+  margin-bottom: 15px;
+}
+.leftBarWrapper th {
+  font-weight: bold;
+  font-size: 70%;
+  padding: 10px 5px 0 5px;
+}
+.leftBarWrapper td, 
+.leftBarWrapper li {
+  font-size: 70%;
+}
+.leftBarWrapper .education tr td:first-child,
+.leftBarWrapper .referees tr td:first-child {
+  padding-left: 20px;
+}
+.leftBarWrapper .skills {
+  text-align: center;
+}
+.leftBarWrapper .contact tr td:first-child,
+.leftBarWrapper .referees tr td:first-child {
+  width: 30px;
+}
+.leftBarWrapper .contact,
+.leftBarWrapper .education,
+.leftBarWrapper .interests,
+.leftBarWrapper .referees  {
+  text-align: left;
+}
+.leftBarWrapper .contact tr td:nth-child(1),
+.leftBarWrapper .referees tr td:nth-child(1) {
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+.mainContentWrapper .profile-contentWrapper {
+  padding: 30px;
+}

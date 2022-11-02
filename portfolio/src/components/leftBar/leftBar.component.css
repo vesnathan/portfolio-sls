@@ -1,0 +1,12 @@
+.leftBarWrapper {
+  height: 100%;
+  background-color: rgb(38, 45, 56);
+  min-height: 500px;
+  color: white;
+  text-align: center;
+  padding: 1%;
+}
+
+h1 {
+  font-size: 150%;
+}/*# sourceMappingURL=leftBar.component.css.map */
