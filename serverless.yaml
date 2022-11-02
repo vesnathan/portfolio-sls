@@ -10,7 +10,6 @@ provider:
 
 plugins:
   - serverless-s3-sync
-  - serverless-offline
 custom:
   bucketName: portfolio-o5z9dq1v9p
   s3Sync:
@@ -75,13 +74,6 @@ resources:
             ViewerProtocolPolicy: redirect-to-https
           ViewerCertificate:
             CloudFrontDefaultCertificate: true	
-functions:
-  graphql:
-    handler: backend/handler.server
-    events:
-    - http:
-        path: /
-        method: post
-        cors: true
+
         
 

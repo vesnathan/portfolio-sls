@@ -1,9 +1,0 @@
-type Query {
-  getUserInfo(name: String!): User!
-}
-
-type User {
-  name: String!
-  email: String!
-  number: String!
-}
