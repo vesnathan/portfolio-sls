@@ -15,7 +15,12 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.bucketName}
       localDir: portfolio/build/
-
+package:
+  exclude:
+    - '**/src/**'
+    - '**/*.ts'
+    - '**/*.md'
+    - node_modules/aws-sdk/**
 resources:
   Resources:
     PortfolioBucket:
@@ -74,6 +79,12 @@ resources:
             ViewerProtocolPolicy: redirect-to-https
           ViewerCertificate:
             CloudFrontDefaultCertificate: true	
-
+functions:
+  contact:
+    handler: handler.contact
+    events:
+      - http:
+        path: contact
+        method: get
         
 
