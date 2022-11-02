@@ -4,13 +4,13 @@ service: portfolio
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   profile: portfolioUser
   region: ap-southeast-2
 
 plugins:
   - serverless-s3-sync
-
+  - serverless-offline
 custom:
   bucketName: portfolio-o5z9dq1v9p
   s3Sync:
@@ -74,4 +74,14 @@ resources:
                 Forward: none
             ViewerProtocolPolicy: redirect-to-https
           ViewerCertificate:
-            CloudFrontDefaultCertificate: true
+            CloudFrontDefaultCertificate: true	
+functions:
+  graphql:
+    handler: backend/handler.server
+    events:
+    - http:
+        path: /
+        method: post
+        cors: true
+        
+

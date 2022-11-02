@@ -1,5 +1,12 @@
 {
   "devDependencies": {
+    "serverless-offline": "^11.2.3",
+    "serverless-plugin-common-excludes": "^4.0.0",
     "serverless-s3-sync": "^3.1.0"
+  },
+  "dependencies": {
+    "graphql-yoga": "*",
+    "serverless": "^3.23.0",
+    "serverless-plugin-include-dependencies": "^5.0.0"
   }
 }
