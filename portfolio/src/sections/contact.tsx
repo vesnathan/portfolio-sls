@@ -25,12 +25,10 @@ interface ResponseMessageInterface {
 }
 
 interface ResponseDataInterface {
-  message: ResponseMessageInterface
+  data: ResponseMessageInterface,
+  status: string
 }
 
-interface ResponseInterface {
-  data: ResponseDataInterface
-}
 const RecaptchaButton = () => {
   const state: any = useAppContext();
 
@@ -44,22 +42,26 @@ const RecaptchaButton = () => {
     }
 
     const token = await executeRecaptcha('getContactDetails');
-    try {
-      const response: ResponseInterface = await axios.post(
-        `${apiPath}/contact/details`,
-        { token },
-      );
 
-      state.updateAppState(
-        {
-          newDispatches:
-          [
-            { which: UPDATE_CONTACT_SHOW, data: true },
-            { which: UPDATE_CONTACT_EMAIL, data: response.data.message.email },
-            { which: UPDATE_CONTACT_PHONE, data: response.data.message.phone },
-          ],
-        },
-      );
+    try {
+      fetch(`${apiPath}/contact/details`, {
+        method: 'POST',
+        body: JSON.stringify({ token }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          console.log('response', response);
+          state.updateAppState(
+            {
+              newDispatches:
+            [
+              { which: UPDATE_CONTACT_SHOW, data: true },
+              { which: UPDATE_CONTACT_EMAIL, data: response.data.message.email },
+              { which: UPDATE_CONTACT_PHONE, data: response.data.message.phone },
+            ],
+            },
+          );
+        });
     // eslint-disable-next-line no-console
     } catch (err) { console.log(err); }
   }, [executeRecaptcha]);
