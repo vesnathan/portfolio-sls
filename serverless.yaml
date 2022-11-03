@@ -92,5 +92,6 @@ functions:
       - http:
           path: contact/middyContactHandler
           method: post
+          cors: true
         
 
