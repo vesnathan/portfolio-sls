@@ -47,6 +47,9 @@ const RecaptchaButton = () => {
       fetch(`${apiPath}/contact/details`, {
         method: 'POST',
         body: JSON.stringify({ token }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
         .then((response) => response.json())
         .then((response) => {
@@ -61,9 +64,10 @@ const RecaptchaButton = () => {
             ],
             },
           );
-        });
+        })
+        .catch((err) => console.log(err));
     // eslint-disable-next-line no-console
-    } catch (err) { console.log(err); }
+    } catch (err) { console.log(`ERROR: 2385.104 ${err}`); }
   }, [executeRecaptcha]);
 
   return <Button onClick={handleReCaptchaVerify} variant="contained">VIEW</Button>;
