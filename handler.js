@@ -27,6 +27,7 @@ const contactHandler = async (event, context, callback) => {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
       });
     }
@@ -41,6 +42,7 @@ const contactHandler = async (event, context, callback) => {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
       });
     }  
