@@ -10,7 +10,7 @@ const contactHandler = async (event, context, callback) => {
   fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        secret: secrey_key,
+        secret: secret_key,
         token: token
       })
   })
