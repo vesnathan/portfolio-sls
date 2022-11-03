@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 	
-const middy = require('middy');
-const { cors } = require('middy/middlewares');
+// const middy = require('middy');
+// const { cors } = require('middy/middlewares');
 
-const contact = async (event, context, callback) => {
+const contactHandler = async (event, context, callback) => {
   const body = JSON.parse(event.body);
   const secret_key = "6Ldf298gAAAAAHRuMz18-3vfN5ReMOSSNwuxBMNl"; // process.env.SECRET_KEY;
   const { token } = body;
@@ -47,8 +47,8 @@ const contact = async (event, context, callback) => {
   .catch(error => console.log({ error })); 
 }
 	
-const contactHandler = middy(contact)
-  .use(cors()) // Adds CORS headers to responses
+// const contactHandler = middy(contact)
+//   .use(cors()) // Adds CORS headers to responses
  
 module.exports = { contactHandler }
 

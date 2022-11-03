@@ -207,7 +207,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio/dev/1667462690423-2022-11-03T08:04:50.423Z/portfolio.zip"
+          "S3Key": "serverless/portfolio/dev/1667468608163-2022-11-03T09:43:28.163Z/portfolio.zip"
         },
         "Handler": "s_contact.handler",
         "Runtime": "nodejs16.x",
@@ -225,14 +225,14 @@
         "ContactLogGroup"
       ]
     },
-    "ContactLambdaVersionHH6CYHsnLGOPBGMOUsfjSqQtaWuuch5iIMfd15NyxhE": {
+    "ContactLambdaVersion78fBP2vyyMHbxL0GwbVJZrBtRabsGQLKyucCe4xPpeA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactLambdaFunction"
         },
-        "CodeSha256": "OaW3wECYwEkW7/Zgnvtyhj+Cuc//ultzowycJjY3+Xs="
+        "CodeSha256": "BJuQhGDKVP5J3V3mN85J0OiAXiFi1zM7RBPq/Dp8GUM="
       }
     },
     "ApiGatewayRestApi": {
@@ -320,7 +320,7 @@
         "ContactLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1667462674480": {
+    "ApiGatewayDeployment1667468591873": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -478,7 +478,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio/dev/1667462690423-2022-11-03T08:04:50.423Z/custom-resources.zip"
+          "S3Key": "serverless/portfolio/dev/1667468608163-2022-11-03T09:43:28.163Z/custom-resources.zip"
         },
         "FunctionName": "portfolio-dev-custom-resource-apigw-cw-role",
         "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -621,7 +621,7 @@
     "ContactLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactLambdaVersionHH6CYHsnLGOPBGMOUsfjSqQtaWuuch5iIMfd15NyxhE"
+        "Ref": "ContactLambdaVersion78fBP2vyyMHbxL0GwbVJZrBtRabsGQLKyucCe4xPpeA"
       },
       "Export": {
         "Name": "sls-portfolio-dev-ContactLambdaFunctionQualifiedArn"
