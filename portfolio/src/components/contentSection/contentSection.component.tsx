@@ -3,7 +3,7 @@ import React from 'react';
 import SectionHeader from '../sectionHeader/sectionHeader.component';
 // eslint-disable-next-line import/no-useless-path-segments, @typescript-eslint/no-unused-vars
 import {
-  skills, education, interests, referees, contact, profile, Portfolio,
+  skills, education, interests, referees, Contact, profile, Portfolio,
 } from '../../sections';
 
 interface LeftBarSectionProps {
@@ -18,7 +18,7 @@ const ContentSection = ({ text, headerVariant }: LeftBarSectionProps): JSX.Eleme
     <div className={`${text}-contentWrapper`}>
       {
         text === 'contact'
-          && contact
+          && <Contact />
       }
       {
         text === 'skills'

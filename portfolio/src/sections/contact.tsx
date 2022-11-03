@@ -1,37 +1,112 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useCallback } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import { useAppContext } from '../utils/AppStateContext';
+import { apiPath } from '../constants/constants';
 
-const contact = () => (
-  <table>
-    <tr>
-      <td><PhoneAndroidIcon fontSize="small" /></td>
-      <td>0423 867 510</td>
-    </tr>
-    <tr>
-      <td><EmailIcon fontSize="small" /></td>
-      <td>vesnathan@gmail.com</td>
-    </tr>
-    <tr>
-      <td><HomeIcon fontSize="small" /></td>
-      <td>Currently residing in Hobart, Relocating to Sydney or Brisbane early 2023</td>
-    </tr>
-    <tr>
-      <td />
-      <td />
-    </tr>
-    <tr>
-      <td><GitHubIcon fontSize="small" /></td>
-      <td>github.com/vesnathan</td>
-    </tr>
-    <tr>
-      <td><LinkedInIcon fontSize="small" /></td>
-      <td>linkedin.com/nathan-loudon/</td>
-    </tr>
-  </table>
-);
+import {
+  UPDATE_CONTACT_SHOW,
+  UPDATE_CONTACT_EMAIL,
+  UPDATE_CONTACT_PHONE,
+} from '../utils/actions';
 
-export default contact();
+interface ResponseMessageInterface {
+  name: string,
+  email: string,
+  phone: string,
+}
+
+interface ResponseDataInterface {
+  message: ResponseMessageInterface
+}
+
+interface ResponseInterface {
+  data: ResponseDataInterface
+}
+const RecaptchaButton = () => {
+  const state: any = useAppContext();
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const token = await executeRecaptcha('yourAction');
+    try {
+      const response: ResponseInterface = await axios.get(`${apiPath}/contact/details`);
+      console.log(response);
+      state.updateAppState(
+        {
+          newDispatches:
+          [
+            { which: UPDATE_CONTACT_SHOW, data: true },
+            { which: UPDATE_CONTACT_EMAIL, data: response.data.message.email },
+            { which: UPDATE_CONTACT_PHONE, data: response.data.message.phone },
+          ],
+        },
+      );
+    } catch (err) { console.log(err); }
+  }, [executeRecaptcha]);
+
+  return <Button onClick={handleReCaptchaVerify} variant="contained">VIEW</Button>;
+};
+const Contact = () => {
+  const state: any = useAppContext();
+  const {
+    showContactDetails,
+    contactPhone,
+    contactEmail,
+  } = state.state;
+  return (
+    (!showContactDetails)
+      ? (
+        <table className="buttonTable">
+          <tbody>
+            <tr><td><RecaptchaButton /></td></tr>
+          </tbody>
+        </table>
+      )
+      : (
+        <table className="detailsTable">
+          <tbody>
+            <tr>
+              <td><PhoneAndroidIcon fontSize="small" /></td>
+              <td id="contactPhone">{contactPhone}</td>
+            </tr>
+            <tr>
+              <td><EmailIcon fontSize="small" /></td>
+              <td id="contactEmail">{contactEmail}</td>
+            </tr>
+            <tr>
+              <td><HomeIcon fontSize="small" /></td>
+              <td>Currently residing in Hobart, Relocating to Sydney or Brisbane early 2023</td>
+            </tr>
+            <tr>
+              <td />
+              <td />
+            </tr>
+            <tr>
+              <td><GitHubIcon fontSize="small" /></td>
+              <td>github.com/vesnathan</td>
+            </tr>
+            <tr>
+              <td><LinkedInIcon fontSize="small" /></td>
+              <td>linkedin.com/nathan-loudon/</td>
+            </tr>
+          </tbody>
+        </table>
+      )
+  );
+};
+
+export default Contact;

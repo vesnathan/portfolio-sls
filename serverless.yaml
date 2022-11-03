@@ -10,6 +10,7 @@ provider:
 
 plugins:
   - serverless-s3-sync
+  - serverless-offline
 custom:
   bucketName: portfolio-o5z9dq1v9p
   s3Sync:
@@ -17,10 +18,15 @@ custom:
       localDir: portfolio/build/
 package:
   exclude:
-    - '**/src/**'
-    - '**/*.ts'
-    - '**/*.md'
-    - node_modules/aws-sdk/**
+    - 'portfolio/src/**'
+    - 'portfolio/.husky/**'
+    - 'portfolio/node_modules/**'
+    - 'portfolio/.eslintignore'
+    - 'portfolio/.eslintrc.json'
+    - 'portfolio/package.json'
+    - 'portfolio/package-lock.json'
+    - 'portfolio/tsconfig.json'
+    - 'node_modules/**'
 resources:
   Resources:
     PortfolioBucket:
@@ -84,7 +90,7 @@ functions:
     handler: handler.contact
     events:
       - http:
-        path: contact/details
-        method: get
+          path: contact/details
+          method: get
         
 

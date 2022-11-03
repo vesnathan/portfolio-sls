@@ -12,7 +12,7 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": ["./profile/tsconfig.json"]
+        "project": ["/home/liqk1ugzoezh5okwywlr_/dev/portfolio/portfolio/tsconfig.json"]
     },
     "plugins": [
         "react"

@@ -1,8 +1,16 @@
 {
   "devDependencies": {
+    "serverless-offline": "^11.2.3",
     "serverless-s3-sync": "^3.1.0"
   },
   "dependencies": {
-    "serverless": "^3.23.0"
+    "concurrently": "^7.5.0",
+    "graceful-fs": "^4.2.10",
+    "serverless": "^3.23.0",
+    "serverless-plugin-common-excludes": "^4.0.0",
+    "serverless-plugin-include-dependencies": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"sls offline start\" \"cd portfolio && PORT=3006 npm start\" "
   }
 }
