@@ -87,7 +87,7 @@ resources:
             CloudFrontDefaultCertificate: true	
 functions:
   contact:
-    handler: handler.contactHandler
+    handler: handler.contact
     events:
       - http:
           path: contact/details

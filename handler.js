@@ -1,9 +1,6 @@
 const fetch = require('node-fetch');
-	
-// const middy = require('middy');
-// const { cors } = require('middy/middlewares');
 
-const contactHandler = async (event, context, callback) => {
+module.exports.contact = async (event, context, callback) => {
   const body = JSON.parse(event.body);
   const secret_key = "6Ldf298gAAAAAHRuMz18-3vfN5ReMOSSNwuxBMNl"; // process.env.SECRET_KEY;
   const { token } = body;
@@ -17,6 +14,11 @@ const contactHandler = async (event, context, callback) => {
     if (google_response.success === true) {
       response = {
         statusCode: 200,
+        status: 'success',
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
         body: JSON.stringify({
           name: 'Nathan Loudon',
           email: 'vesnathan@gmail.com',
@@ -27,30 +29,24 @@ const contactHandler = async (event, context, callback) => {
     else {
       response = {
         statusCode: 400,
+        status: 'error',
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          name: 'error',
+          name: '',
           email: '',
           phone: '',
         })
       };
     }
     console.log("response before return",JSON.stringify( response));
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify({
-        name: 'Nathan Loudon',
-        email: 'vesnathan@gmail.com',
-        phone: '0423 867 510',
-      })
-    });
+    callback(null, response);
   })
   .catch(error => console.log({ error })); 
 }
-	
-// const contactHandler = middy(contact)
-//   .use(cors()) // Adds CORS headers to responses
- 
-module.exports = { contactHandler }
 
 
 
