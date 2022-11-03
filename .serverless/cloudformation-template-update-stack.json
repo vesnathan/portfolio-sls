@@ -207,7 +207,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio/dev/1667468608163-2022-11-03T09:43:28.163Z/portfolio.zip"
+          "S3Key": "serverless/portfolio/dev/1667470896390-2022-11-03T10:21:36.390Z/portfolio.zip"
         },
         "Handler": "s_contact.handler",
         "Runtime": "nodejs16.x",
@@ -225,14 +225,14 @@
         "ContactLogGroup"
       ]
     },
-    "ContactLambdaVersion78fBP2vyyMHbxL0GwbVJZrBtRabsGQLKyucCe4xPpeA": {
+    "ContactLambdaVersionyBWUlG5DxZWvseuvwO5s7s9LWDrnPyv61efUdVOHJe4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactLambdaFunction"
         },
-        "CodeSha256": "BJuQhGDKVP5J3V3mN85J0OiAXiFi1zM7RBPq/Dp8GUM="
+        "CodeSha256": "UpCKMkVMUl1h5B8kPWAlpEgUt1zvX3CALeYKr9Lst6c="
       }
     },
     "ApiGatewayRestApi": {
@@ -262,25 +262,25 @@
         }
       }
     },
-    "ApiGatewayResourceContactDetails": {
+    "ApiGatewayResourceContactMiddycontacthandler": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
           "Ref": "ApiGatewayResourceContact"
         },
-        "PathPart": "details",
+        "PathPart": "middyContactHandler",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
       }
     },
-    "ApiGatewayMethodContactDetailsPost": {
+    "ApiGatewayMethodContactMiddycontacthandlerPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceContactDetails"
+          "Ref": "ApiGatewayResourceContactMiddycontacthandler"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -320,7 +320,7 @@
         "ContactLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1667468591873": {
+    "ApiGatewayDeployment1667470881390": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -329,7 +329,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodContactDetailsPost"
+        "ApiGatewayMethodContactMiddycontacthandlerPost"
       ]
     },
     "ContactLambdaPermissionApiGateway": {
@@ -478,7 +478,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio/dev/1667468608163-2022-11-03T09:43:28.163Z/custom-resources.zip"
+          "S3Key": "serverless/portfolio/dev/1667470896390-2022-11-03T10:21:36.390Z/custom-resources.zip"
         },
         "FunctionName": "portfolio-dev-custom-resource-apigw-cw-role",
         "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -621,7 +621,7 @@
     "ContactLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactLambdaVersion78fBP2vyyMHbxL0GwbVJZrBtRabsGQLKyucCe4xPpeA"
+        "Ref": "ContactLambdaVersionyBWUlG5DxZWvseuvwO5s7s9LWDrnPyv61efUdVOHJe4"
       },
       "Export": {
         "Name": "sls-portfolio-dev-ContactLambdaFunctionQualifiedArn"

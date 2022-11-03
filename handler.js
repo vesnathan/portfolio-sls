@@ -1,52 +1,47 @@
 const fetch = require('node-fetch');
+import middy from '@middy/core';
+import cors from '@middy/http-cors';
 
-module.exports.contact = async (event, context, callback) => {
+const contactHandler = async (event, context, callback) => {
   const body = JSON.parse(event.body);
   const secret_key = "6Ldf298gAAAAAHRuMz18-3vfN5ReMOSSNwuxBMNl"; // process.env.SECRET_KEY;
   const { token } = body;
-  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;
-  let response = {}
+  const url = `https://www.google.com/recaptcha/api/siteverify`;
   fetch(url, {
-      method: 'post',
+      method: 'POST',
+      body: JSON.stringify({
+        secret: secrey_key,
+        token: token
+      })
   })
   .then(response => response.json())
   .then(google_response => {
     if (google_response.success === true) {
-      response = {
+      callback(null, {
         statusCode: 200,
-        status: 'success',
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
         body: JSON.stringify({
           name: 'Nathan Loudon',
           email: 'vesnathan@gmail.com',
           phone: '0423 867 510',
         })
-      };
+      });
     }
     else {
-      response = {
+      callback(null, {
         statusCode: 400,
-        status: 'error',
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           name: '',
           email: '',
           phone: '',
         })
-      };
-    }
-    console.log("response before return",JSON.stringify( response));
-    callback(null, response);
+      });
+    }  
   })
   .catch(error => console.log({ error })); 
 }
+
+const middyContactHandler = middy(contactHandler).use(cors());
+module.exports.middyContactHandler;
 
 
 

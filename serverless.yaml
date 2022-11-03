@@ -90,7 +90,7 @@ functions:
     handler: handler.contact
     events:
       - http:
-          path: contact/details
+          path: contact/middyContactHandler
           method: post
         
 
