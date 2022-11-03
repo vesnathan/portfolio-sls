@@ -8,7 +8,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Button from '@mui/material/Button';
-import axios from 'axios';
+
 import { useAppContext } from '../utils/AppStateContext';
 import { apiPath } from '../constants/constants';
 
