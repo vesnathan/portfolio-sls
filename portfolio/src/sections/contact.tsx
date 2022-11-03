@@ -35,16 +35,21 @@ const RecaptchaButton = () => {
   const state: any = useAppContext();
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+
   const handleReCaptchaVerify = useCallback(async () => {
     if (!executeRecaptcha) {
+      // eslint-disable-next-line no-console
       console.log('Execute recaptcha not yet available');
       return;
     }
 
-    const token = await executeRecaptcha('yourAction');
+    const token = await executeRecaptcha('getContactDetails');
     try {
-      const response: ResponseInterface = await axios.get(`${apiPath}/contact/details`);
-      console.log(response);
+      const response: ResponseInterface = await axios.post(
+        `${apiPath}/contact/details`,
+        { token },
+      );
+
       state.updateAppState(
         {
           newDispatches:
@@ -55,6 +60,7 @@ const RecaptchaButton = () => {
           ],
         },
       );
+    // eslint-disable-next-line no-console
     } catch (err) { console.log(err); }
   }, [executeRecaptcha]);
 

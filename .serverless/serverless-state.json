@@ -220,7 +220,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio/dev/1667434358277-2022-11-03T00:12:38.277Z/portfolio.zip"
+                "S3Key": "serverless/portfolio/dev/1667455224205-2022-11-03T06:00:24.205Z/portfolio.zip"
               },
               "Handler": "s_contact.handler",
               "Runtime": "nodejs16.x",
@@ -238,14 +238,14 @@
               "ContactLogGroup"
             ]
           },
-          "ContactLambdaVersionQGw5k6LxaAui3bS2zYsD7IGB3OEPwKycFmW1THN0g": {
+          "ContactLambdaVersionaFkkqTXrZVn5ZXeya8OQ3WL2znoLpYVo8tm59MKg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ContactLambdaFunction"
               },
-              "CodeSha256": "BMVFSC6V2keLeXdifeZmqZUeETAc7S2MVZVIEun9mFA="
+              "CodeSha256": "6lDb2ChH2BBHkOMewsCkcz0URIgHuoG3TYp+3dI9YNI="
             }
           },
           "ApiGatewayRestApi": {
@@ -287,10 +287,10 @@
               }
             }
           },
-          "ApiGatewayMethodContactDetailsGet": {
+          "ApiGatewayMethodContactDetailsPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
-              "HttpMethod": "GET",
+              "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
                 "Ref": "ApiGatewayResourceContactDetails"
@@ -333,7 +333,7 @@
               "ContactLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1667434344984": {
+          "ApiGatewayDeployment1667455209154": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -342,7 +342,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodContactDetailsGet"
+              "ApiGatewayMethodContactDetailsPost"
             ]
           },
           "ContactLambdaPermissionApiGateway": {
@@ -491,7 +491,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio/dev/1667434358277-2022-11-03T00:12:38.277Z/custom-resources.zip"
+                "S3Key": "serverless/portfolio/dev/1667455224205-2022-11-03T06:00:24.205Z/custom-resources.zip"
               },
               "FunctionName": "portfolio-dev-custom-resource-apigw-cw-role",
               "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -634,7 +634,7 @@
           "ContactLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ContactLambdaVersionQGw5k6LxaAui3bS2zYsD7IGB3OEPwKycFmW1THN0g"
+              "Ref": "ContactLambdaVersionaFkkqTXrZVn5ZXeya8OQ3WL2znoLpYVo8tm59MKg"
             },
             "Export": {
               "Name": "sls-portfolio-dev-ContactLambdaFunctionQualifiedArn"
@@ -778,7 +778,7 @@
           {
             "http": {
               "path": "contact/details",
-              "method": "get",
+              "method": "post",
               "integration": "AWS_PROXY"
             }
           }
@@ -789,7 +789,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "ContactLambdaVersionQGw5k6LxaAui3bS2zYsD7IGB3OEPwKycFmW1THN0g"
+        "versionLogicalId": "ContactLambdaVersionaFkkqTXrZVn5ZXeya8OQ3WL2znoLpYVo8tm59MKg"
       }
     },
     "resources": {
@@ -911,7 +911,7 @@
           "serverless_sdk/**"
         ],
         "artifact": "/home/liqk1ugzoezh5okwywlr_/dev/portfolio/.serverless/portfolio.zip",
-        "artifactDirectoryName": "serverless/portfolio/dev/1667434358277-2022-11-03T00:12:38.277Z"
+        "artifactDirectoryName": "serverless/portfolio/dev/1667455224205-2022-11-03T06:00:24.205Z"
       },
       "resources": {
         "$ref": "$[\"service\"][\"resources\"]"
@@ -930,7 +930,7 @@
     "artifact": "/home/liqk1ugzoezh5okwywlr_/dev/portfolio/.serverless/portfolio.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfolio/dev/1667434358277-2022-11-03T00:12:38.277Z",
+    "artifactDirectoryName": "serverless/portfolio/dev/1667455224205-2022-11-03T06:00:24.205Z",
     "artifact": "portfolio.zip"
   }
 }

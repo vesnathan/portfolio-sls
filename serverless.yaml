@@ -91,6 +91,6 @@ functions:
     events:
       - http:
           path: contact/details
-          method: get
+          method: post
         
 
