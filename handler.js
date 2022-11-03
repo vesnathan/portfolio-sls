@@ -23,7 +23,11 @@ const contactHandler = async (event, context, callback) => {
           name: 'Nathan Loudon',
           email: 'vesnathan@gmail.com',
           phone: '0423 867 510',
-        })
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
       });
     }
     else {
@@ -33,7 +37,11 @@ const contactHandler = async (event, context, callback) => {
           name: '',
           email: '',
           phone: '',
-        })
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
       });
     }  
   })
@@ -42,6 +50,9 @@ const contactHandler = async (event, context, callback) => {
 
 const middyContactHandler = middy(contactHandler).use(cors());
 module.exports.middyContactHandler;
+
+
+
 
 
 

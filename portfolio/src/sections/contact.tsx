@@ -49,6 +49,7 @@ const RecaptchaButton = () => {
         body: JSON.stringify({ token }),
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       })
         .then((response) => response.json())
