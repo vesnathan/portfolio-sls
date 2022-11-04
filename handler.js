@@ -23,7 +23,7 @@ const contactHandler = async (event, context) => {
       };
     }
     return {
-      statusCode: 403,
+      statusCode: 200,
       body: JSON.stringify({
         status: "ERROR",
         message: 'ERROR 365.214',
@@ -31,7 +31,7 @@ const contactHandler = async (event, context) => {
     }; 
   } catch(error) {() => {
     return {
-      statusCode: 500,
+      statusCode: 200,
       body: JSON.stringify({
         status: "ERROR",
         message: 'ERROR 542.198',
