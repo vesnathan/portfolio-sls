@@ -40,33 +40,26 @@ const RecaptchaButton = () => {
       console.log('Execute recaptcha not yet available');
       return;
     }
-
-    const token = await executeRecaptcha('getContactDetails');
-
     try {
-      fetch(`${apiPath}/contact/details`, {
+      const token = await executeRecaptcha('getContactDetails');
+      const response = await fetch(`${apiPath}/contact/middyContactHandler`, {
         method: 'POST',
         body: JSON.stringify({ token }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          console.log('response', response);
-          state.updateAppState(
-            {
-              newDispatches:
-            [
-              { which: UPDATE_CONTACT_SHOW, data: true },
-              { which: UPDATE_CONTACT_EMAIL, data: response.data.message.email },
-              { which: UPDATE_CONTACT_PHONE, data: response.data.message.phone },
-            ],
-            },
-          );
-        })
-        .catch((err) => console.log(err));
+      });
+      const tokenResponse = await response.json();
+      console.log(tokenResponse);
+      if (tokenResponse.status === 'SUCCESS') {
+        state.updateAppState(
+          {
+            newDispatches:
+              [
+                { which: UPDATE_CONTACT_SHOW, data: true },
+                { which: UPDATE_CONTACT_EMAIL, data: tokenResponse.email },
+                { which: UPDATE_CONTACT_PHONE, data: tokenResponse.phone },
+              ],
+          },
+        );
+      }
     // eslint-disable-next-line no-console
     } catch (err) { console.log(`ERROR: 2385.104 ${err}`); }
   }, [executeRecaptcha]);

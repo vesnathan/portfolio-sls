@@ -16,17 +16,16 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.bucketName}
       localDir: portfolio/build/
-package:
-  exclude:
-    - 'portfolio/src/**'
-    - 'portfolio/.husky/**'
-    - 'portfolio/node_modules/**'
-    - 'portfolio/.eslintignore'
-    - 'portfolio/.eslintrc.json'
-    - 'portfolio/package.json'
-    - 'portfolio/package-lock.json'
-    - 'portfolio/tsconfig.json'
-    - 'node_modules/**'
+# package:
+#   exclude:
+#     - 'portfolio/src/**'
+#     - 'portfolio/.husky/**'
+#     - 'portfolio/node_modules/**'
+#     - 'portfolio/.eslintignore'
+#     - 'portfolio/.eslintrc.json'
+#     - 'portfolio/package.json'
+#     - 'portfolio/package-lock.json'
+#     - 'portfolio/tsconfig.json'
 resources:
   Resources:
     PortfolioBucket:
@@ -87,21 +86,10 @@ resources:
             CloudFrontDefaultCertificate: true	
 functions:
   contact:
-    handler: handler.contact
+    handler: handler.middyContactHandler
     events:
       - http:
           path: contact/middyContactHandler
           method: post
-          cors:
-            origin: '*' 
-            headers: 
-              - Content-Type
-              - X-Amz-Date
-              - Accept
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: false
         
 

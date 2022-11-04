@@ -1,18 +1,20 @@
 {
+  "type": "module",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.108",
     "serverless-offline": "^11.2.3",
     "serverless-s3-sync": "^3.1.0"
   },
   "dependencies": {
+    "@middy/core": "^3.6.2",
+    "@middy/http-cors": "^3.6.2",
     "concurrently": "^7.5.0",
     "graceful-fs": "^4.2.10",
     "middy": "^0.36.0",
-    "serverless": "^3.23.0",
-    "serverless-plugin-common-excludes": "^4.0.0",
-    "serverless-plugin-include-dependencies": "^5.0.0"
+    "serverless": "^3.23.0"
   },
   "scripts": {
-    "dev": "concurrently \"sls offline start\" \"cd portfolio && PORT=3006 npm start\" "
+    "dev": "concurrently \"sls offline start\" \"cd portfolio && PORT=3006 npm start\" ",
+    "build": "cd portfolio && npm run build"
   }
 }
