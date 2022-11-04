@@ -23,13 +23,21 @@ const contactHandler = async (event, context) => {
       };
     }
     return {
-      statusCode: 400,
+      statusCode: 403,
       body: JSON.stringify({
         status: "ERROR",
-        message: 'ERROR1',
+        message: 'ERROR 365.214',
       }),
     }; 
-  } catch(error) {() => console.log({ error })}
+  } catch(error) {() => {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        status: "ERROR",
+        message: 'ERROR 542.198',
+      }),
+    }; 
+  }}
 }
 
 export const middyContactHandler = middy(contactHandler).use(cors({ 
